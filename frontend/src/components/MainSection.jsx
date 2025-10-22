@@ -1,32 +1,32 @@
 import React from "react";
-
+import image  from "../assets/ChatGPT Image Oct 22, 2025, 06_20_44 PM.png"
 const MainSection = () => {
   return (
     <>
-    <section className="py-15 bg-gradient-to-l to-green-600 from-yellow-300">
-        <div className="  flex flex-col md:flex-row  justify-center items-center px-35 font-sans">
+    <section className="md:py-45 py-30 bg-linear-to-t md:bg-linear-to-l to-[#333333] from-[#F5C469]">
+        <div className="  flex flex-col md:flex-row  justify-center items-center md:pl-28 font-sans">
           <div>
-            <div className="capitalize text-white text-5xl font-bold">
+            <div className="capitalize text-[#dddddd] md:text-6xl text-[32px] text-center md:text-left  font-bold">
               <h2 className="mb-2">discover authentic</h2>
-              <h2 className="text-yellow-300">Goan Products</h2>
+              <h2 className="text-[#F5C469]">Goan Products</h2>
             </div>
-            <div className="text-left flex-wrap my-8 pr-20">
-              <p className="text-[21px] text-white">
+            <div className="text-center md:text-left flex-wrap my-8 px-5 md:pr-20 md:px-0">
+              <p className="md:text-[22px] text-lg text-[#dddddd]">
                 Connect directly with Self Help Groups across Goa. Support local
                 artisans, farmers, and entrepreneurs while discovering unique
                 handcrafted products.
               </p>
             </div>
-            <div className="flex flex-col md:flex-row  justify-self-start items-center space-x-6 ">
-              <button className="bg-white capitalize text-[16px] py-3 px-8 text-green-600 rounded-lg font-bold border border-white">start shopping</button>
-              <button className="bg-green-600 capitalize text-[16px] py-3 px-8 text-white rounded-lg font-bold border border-white">
+            <div className="flex flex-col md:flex-row  md:justify-self-start items-center gap-4 md:gap-8 ">
+              <button className="bg-[#dddddd] capitalize md:text-[16px] py-3 px-8 text-[#333333] rounded-lg font-bold border border-[#dddddd]">start shopping</button>
+              <button className="bg-[#333333] capitalize md:text-[16px] py-3 px-8 text-[#dddddd] rounded-lg font-bold border border-[#dddddd]">
                 join as <span className="uppercase">shg</span>
               </button>
             </div>
           </div>
-          <div className="pr-25">
-            <img className="h-100 w-300"
-              src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg"
+          <div className="md:pr-25 md:mt-0 mt-10 text-center">
+            <img className="h-50 w-80 md:h-100 md:w-300 rounded-2xl"
+              src={image}
               alt=""
             />
           </div>

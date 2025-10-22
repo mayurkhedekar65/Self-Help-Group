@@ -1,13 +1,14 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
-const ShopCategoryCard=({logo,CategoryType})=>{
+const ShopCategoryCard=({Logo,CategoryType})=>{
     return(
         <>
-        <div className="bg-white rounded-lg text-center w-45 py-17 shadow-2xl">
-            <div><img src={logo} alt="" /></div>
-            <div>{CategoryType}</div>
+        <div className="bg-[#333333] rounded-lg text-center w-45 py-12 shadow-2xl">
+            <div><FontAwesomeIcon className="text-3xl text-[#F5C469]" icon={Logo} /></div>
+            <div className="mt-4 text-[#dddddd]">{CategoryType}</div>
         </div>
         </>
     )
