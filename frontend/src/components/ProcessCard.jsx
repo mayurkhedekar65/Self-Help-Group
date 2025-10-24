@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProcessCard = ({Number,Title,Description}) => {
+const ProcessCard = ({ Number, Title, Description }) => {
   return (
     <>
       <div className="bg-[#dddddd] text-center w-75">

@@ -4,10 +4,13 @@ import Footer from "../components/Footer";
 import GroupCard from "../components/GroupCard";
 import image from "../assets/ChatGPT Image Oct 22, 2025, 06_20_44 PM.png";
 import ContainerLoader from "../components/ContainerLoader";
+import Loader from "../components/Loader";
 
 const ShgGroups = () => {
   const [Groups, setGroups] = useState([]);
   const [loader, showLoader] = useState(true);
+  const [loading, setLoading] = useState(false);
+
   setTimeout(() => {
     showLoader(false);
   }, 3500);
@@ -24,31 +27,42 @@ const ShgGroups = () => {
   }, []);
   return (
     <>
-      <Navbar></Navbar>
-      <section className="text-center py-35 bg-[#dddddd] min-h-screen">
-       {!loader && <div>
-          <h2 className="font-bold  text-[#333333] font-sans text-2xl md:text-3xl ">
-            SHG Groups
-          </h2>
-        </div>}
-        {loader && <ContainerLoader/>}
+      {loading ? (
+        <div className="flex justify-center items-center h-screen">
+          <Loader />
+        </div>
+      ) : (
+        <>
+          <Navbar></Navbar>
+          <section className="text-center py-35 bg-[#dddddd] min-h-screen">
+            {!loader && (
+              <div>
+                <h2 className="font-bold  text-[#333333] font-sans text-2xl md:text-3xl ">
+                  SHG Groups
+                </h2>
+              </div>
+            )}
+            {loader && <ContainerLoader />}
 
-      { !loader && <div className="grid grid-cols-1 md:grid-cols-4 place-items-center items-stretch gap-y-8 md:gap-x-0 md:mx-20 text-center pt-10">
-      
-          {Groups.map((item, index) => (
-            <GroupCard
-              key={index}
-              GroupName={item["group_name"]}
-              GroupInfo={item["description"]}
-              Location={item["location"]}
-              TotalProducts={item["total_products"]}
-              TotalGroupMembers={item["total_members"]}
-              Logo={image}
-            ></GroupCard>
-          ))}
-        </div>}
-      </section>
-      <Footer></Footer>
+            {!loader && (
+              <div className="grid grid-cols-1 md:grid-cols-4 place-items-center items-stretch gap-y-8 md:gap-x-0 md:mx-20 text-center pt-10">
+                {Groups.map((item, index) => (
+                  <GroupCard
+                    key={index}
+                    GroupName={item["group_name"]}
+                    GroupInfo={item["description"]}
+                    Location={item["location"]}
+                    TotalProducts={item["total_products"]}
+                    TotalGroupMembers={item["total_members"]}
+                    Logo={image}
+                  ></GroupCard>
+                ))}
+              </div>
+            )}
+          </section>
+          <Footer setLoading={setLoading} />
+        </>
+      )}
     </>
   );
 };
