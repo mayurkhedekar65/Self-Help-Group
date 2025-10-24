@@ -8,6 +8,8 @@ import ImpactCard from "../components/ImpactCard";
 import ProcessCard from "../components/ProcessCard";
 import Footer from "../components/Footer";
 import BottomButtonSection from "../components/BottomButtonSection";
+import { motion } from "motion/react"
+
 import {
   faUtensils,
   faPalette,
@@ -116,15 +118,15 @@ const Home = () => {
             Goa
           </p>
         </div>
-        <div className="flex flex-col md:flex-row justify-center items-center gap-5 md:gap-10 text-center pt-10">
+        <div className="grid grid-col-1 md:grid-cols-4 place-items-center items-stretch md:mx-20 md:gap-x-0 text-center pt-10">
           <GroupCard
             GroupName={"Mapusa Women's Collective"}
             GroupInfo={
               "Specializing in organic food products and traditional preserves since 2018"
             }
             Location={"Mapusa, Bardez"}
-            TotalProducts={"24 Products"}
-            TotalGroupMembers={"15 Members"}
+            TotalProducts={"24"}
+            TotalGroupMembers={"15"}
             Logo={image}
           ></GroupCard>
           <GroupCard
@@ -133,8 +135,8 @@ const Home = () => {
               "Master weavers creating beautiful textiles and home decor items"
             }
             Location={"Ponda, Central Goa"}
-            TotalProducts={"18 Products"}
-            TotalGroupMembers={"12 Members"}
+            TotalProducts={"18"}
+            TotalGroupMembers={"12"}
             Logo={image}
           ></GroupCard>
           <GroupCard
@@ -143,8 +145,8 @@ const Home = () => {
               "Traditional pottery and ceramic art passed down through generations"
             }
             Location={"Margao, Salcete"}
-            TotalProducts={"32 Products"}
-            TotalGroupMembers={"20 Members"}
+            TotalProducts={"32"}
+            TotalGroupMembers={"20"}
             Logo={image}
           ></GroupCard>
           <GroupCard
@@ -153,8 +155,8 @@ const Home = () => {
               "Authentic Goan spices and masalas prepared using traditional methods"
             }
             Location={"Bicholim, North Goa"}
-            TotalProducts={"28 Products"}
-            TotalGroupMembers={"18 Members"}
+            TotalProducts={"28"}
+            TotalGroupMembers={"18"}
             Logo={image}
           ></GroupCard>
         </div>

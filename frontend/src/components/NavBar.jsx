@@ -9,42 +9,22 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const [loader, activateLoader] = useState(false);
-  const showRegistration = () => {
-    activateLoader(true);
-    setTimeout(() => {
-      activateLoader(false);
-      navigate("/registrationform");
-    }, 1500);
-  };
+  const [hide, setHide] = useState(true);
 
-  const showSngGroups = () => {
+  const showLoader = (path) => {
     activateLoader(true);
+    setHide(false)
     setTimeout(() => {
       activateLoader(false);
-      navigate("/snggroups");
-    }, 1500);
-  };
-
-  const showContact = () => {
-    activateLoader(true);
-    setTimeout(() => {
-      activateLoader(false);
-      navigate("/contact");
-    }, 1500);
-  };
-
-  const showAbout = () => {
-    activateLoader(true);
-    setTimeout(() => {
-      activateLoader(false);
-      navigate("/about");
+      setHide(true)
+      navigate(path)
     }, 1500);
   };
   return (
     <>
       {loader && <Loader />}
 
-      <header className="flex justify-center items-center gap-70 md:gap-160 py-2  md:bg-linear-to-l  md:to-[#333333]  md:from-[#F5C469]  bg-linear-to-b from-[#333333]  to-[#3d3c3c]   fixed w-full z-0">
+     {hide &&<header className="flex justify-center items-center gap-70 md:gap-160 py-2  md:bg-linear-to-l  md:to-[#333333]  md:from-[#F5C469]  bg-linear-to-b from-[#333333]  to-[#3d3c3c]   fixed w-full z-67">
         <div>
           <button onClick={() => navigate("/")}>
             <img className=" w-12 h-12 md:w-15 md:h-15" src={logo} alt="" />
@@ -68,24 +48,24 @@ const Navbar = () => {
             <button className="capitalize " onClick={() => navigate("/")}>
               home
             </button>
-            <button className="capitalize" onClick={showSngGroups}>
+            <button className="capitalize" onClick={()=>showLoader("/snggroups")}>
               SHG Groups
             </button>
-            <button className="capitalize" onClick={showContact}>
+            <button className="capitalize" onClick={()=>showLoader("/contact")}>
               contact
             </button>
-            <button className="capitalize" onClick={showAbout}>
+            <button className="capitalize" onClick={()=>showLoader("/about")}>
               about
             </button>
             <button
               className="capitalize bg-[#F5C469] text-[#333333]  md:bg-[#333333] md:text-[#dddddd] border border-[#dddddd] py-2 px-30 md:px-6 rounded-lg md:rounded-4xl"
-              onClick={showRegistration}
+              onClick={()=>showLoader("/registrationform")}
             >
               + Register SHG
             </button>
           </div>
         </nav>
-      </header>
+      </header>}
     </>
   );
 };
