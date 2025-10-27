@@ -1,5 +1,5 @@
 from django.db import models
-from Customers.models import Customer , Customer_Orders
+from Customers.models import CustomerForm , Customer_Orders
 from Products.models import Products
 from django.contrib.auth.models import User
 
@@ -29,7 +29,7 @@ class Shg_Group_Registration(models.Model):
 
 
 class Order_Items(models.Model):
-    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer_id = models.ForeignKey(CustomerForm, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
     order_id = models.ForeignKey(Customer_Orders, on_delete=models.CASCADE)
     shg_groups_id = models.ForeignKey(Shg_Group_Registration, on_delete=models.CASCADE)
