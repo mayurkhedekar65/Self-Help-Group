@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from groups.models import Shg_Group_Registration
 from groups.serializers import ContactFormSerializer
-
+from django.contrib.auth import login
 # Create your views here.
 
 
@@ -18,3 +18,7 @@ class SubmitRegistrationForm(APIView):
         else:
             print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @login_required
+def AdminPanel(request):
+    print("this is a admin panel view")
