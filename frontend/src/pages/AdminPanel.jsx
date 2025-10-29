@@ -41,7 +41,7 @@ const AdminPanel =()=>{
   return (
   <div className="flex flex-col min-h-screen bg-zinc-100">
     
-    <main className="flex-grow max-w-7xl mx-auto p-6">
+    <main className="grow max-w-7xl mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-zinc-800">Admin Dashboard</h1>
         <button 
