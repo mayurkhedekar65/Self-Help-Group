@@ -16,7 +16,7 @@ class Shg_Group_Registration(models.Model):
     class District(models.TextChoices):
         NORTH_GOA = 'NORTH_GOA', 'North Goa'
         SOUTH_GOA = 'SOUTH_GOA', 'South Goa'
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    shg = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     name_of_shg = models.CharField(max_length=50, null=False, blank=False)
     date_of_formation = models.DateField(null=False, blank=False)
     registration_number = models.CharField(max_length=20, null=False, blank=False, unique=True)
