@@ -40,10 +40,12 @@ const Signin = () => {
         "http://127.0.0.1:8000/loginform/user_login/",
         FormData
       ).then((Response)=>alert(Response.data['message']))
+
       setFormData({
         email: "",
         password: ""
       });
+      navigate("/adminpanel")
     } catch (error) {
       console.error("error in submitting form", error);
       alert("error in submitting form.please try again !");
