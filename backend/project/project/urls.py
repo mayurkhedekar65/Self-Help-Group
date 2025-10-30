@@ -24,5 +24,6 @@ urlpatterns = [
     path('shggroups/',views.group_data),
     path('groupform/',include('groups.urls')),
     path('userform/',include('Customers.urls')),
-    path('loginform/',include('Customers.urls'))
+    path('loginform/',include('Customers.urls')),
+    path('shgloginform/',include('groups.urls'))
 ]
