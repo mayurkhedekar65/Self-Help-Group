@@ -7,6 +7,7 @@ from groups.serializers import ShgFormSerializer
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -46,7 +47,7 @@ class SubmitRegistrationForm(APIView):
             print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @login_required
+
 class AdminLogin(APIView):
     def post(self,request,format=None):
         username=request.data.get('email')
@@ -67,3 +68,7 @@ class AdminLogin(APIView):
                         return Response({'message': 'invalid creditials'}, status=status.HTTP_400_BAD_REQUEST)   
         except:
             return Response({'message': 'user not registered'}, status=status.HTTP_400_BAD_REQUEST)
+
+@login_required
+def AdminPanel(request):
+    return Response({'message':'this is admin panel'})
