@@ -10,12 +10,12 @@ from django.contrib.auth.models import User
 
 class Shg_Group_Registration(models.Model):
     class ShgType(models.TextChoices):
-        WOMEN = 'WOMEN', 'Women'
-        MEN = 'MEN', 'Men'
-        MIXED = 'MIXED', 'Mixed'
+        WOMEN = 'Women', 'Women'
+        MEN = 'Men', 'Men'
+        MIXED = 'Mixed', 'Mixed'
     class District(models.TextChoices):
-        NORTH_GOA = 'NORTH_GOA', 'North Goa'
-        SOUTH_GOA = 'SOUTH_GOA', 'South Goa'
+        NORTH_GOA = 'North Goa', 'North Goa'
+        SOUTH_GOA = 'South Goa', 'South Goa'
     shg = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     name_of_shg = models.CharField(max_length=50, null=False, blank=False)
     date_of_formation = models.DateField(null=False, blank=False)
@@ -25,7 +25,7 @@ class Shg_Group_Registration(models.Model):
     taluka = models.CharField(max_length=15, null=False, blank=False)
     district = models.CharField(max_length=20, choices=District.choices, default=District.NORTH_GOA)
     type_of_shg = models.CharField(max_length=10, choices=ShgType.choices, default=ShgType.WOMEN)
-    address = models.CharField(max_length=50, null=False, blank=False)
+    address = models.CharField(max_length=500, null=False, blank=False)
 
 
 class Order_Items(models.Model):
