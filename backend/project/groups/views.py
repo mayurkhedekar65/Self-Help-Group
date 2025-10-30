@@ -27,7 +27,7 @@ class SubmitRegistrationForm(APIView):
             address=request.data.get('address')
             
             
-            shg_user=User.objects.create(username=shg_username,email=shg_username)
+            shg_user=User.objects.create(username=shg_username,email=shg_username,is_staff=True)
             shg_user.set_password(shg_password)
             shg_user.save()
             Shg_Group_Registration.objects.create(shg=shg_user,
