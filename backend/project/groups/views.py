@@ -3,11 +3,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from groups.models import Shg_Group_Registration
-from groups.serializers import ShgFormSerializer
+from Products.models import Products
+from groups.serializers import ShgFormSerializer, AdminPanelSerializer
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
-from django.contrib.auth.decorators import login_required
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 
@@ -69,6 +70,32 @@ class AdminLogin(APIView):
         except:
             return Response({'message': 'user not registered'}, status=status.HTTP_400_BAD_REQUEST)
 
-@login_required
-def AdminPanel(request):
-    return Response({'message':'this is admin panel'})
+
+class AdminPanelView(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self,request, format=None):
+        serializer = AdminPanelSerializer(data=request.data)
+        product_name=request.data.get('product_name')
+        shg_group=request.data.get('shg_group')
+        price=request.data.get('price')
+        stock_quantity=request.data.get('stock_quantity')
+        description=request.data.get('description')
+        category=request.data.get('category')
+        image=request.data.get('image')
+        try:
+            if serializer.is_valid():
+                Products.objects.create(
+                    product_name=product_name,
+                    shg_group=shg_group,
+                    price=price,
+                    stock_quantity=stock_quantity,
+                    description=description,
+                    category=category,
+                    image=image
+                )
+                return Response({'message':'Product added Successfully'})
+            else:
+                print(serializer.errors)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response({'message':'You Entered Wrong Details'}, status=status.HTTP_400_BAD_REQUEST)
