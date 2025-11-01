@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from groups.models import Shg_Group_Registration
+from Products.models import Products
 
 
 class ShgFormSerializer(serializers.ModelSerializer):
@@ -14,3 +15,15 @@ class ShgFormSerializer(serializers.ModelSerializer):
                   'district',
                   'type_of_shg',
                   'address']
+
+class AdminPanelSerializer(serializers.Serializer):
+    class Meta:
+        model = Products
+        fields = [
+            'product_name',
+            'shg_group',
+            'price',
+            'stock_quantity',
+            'description',
+            'category',
+            'image',]
