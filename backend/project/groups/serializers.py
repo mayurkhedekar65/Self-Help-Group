@@ -21,7 +21,6 @@ class AdminPanelSerializer(serializers.Serializer):
         model = Products
         fields = [
             'product_name',
-            'shg_group',
             'price',
             'stock_quantity',
             'description',

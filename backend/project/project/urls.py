@@ -25,5 +25,6 @@ urlpatterns = [
     path('groupform/',include('groups.urls')),
     path('userform/',include('Customers.urls')),
     path('loginform/',include('Customers.urls')),
-    path('shgloginform/',include('groups.urls'))
+    path('shgloginform/',include('groups.urls')),
+    path('adminpanel/',include('groups.urls')),
 ]

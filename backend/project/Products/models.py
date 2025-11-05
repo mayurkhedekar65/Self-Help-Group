@@ -1,8 +1,8 @@
 from django.db import models
 # Create your models here.
 class Products(models.Model):
+    shg_group_id = models.ForeignKey('groups.Shg_Group_Registration', on_delete=models.CASCADE)
     product_name = models.CharField(max_length=100, null=False, blank=False)
-    shg_group = models.ForeignKey('groups.Shg_Group_Registration', on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
     description = models.TextField(null=True, blank=True)
     category = models.CharField(max_length=50, null=False, blank=False)
