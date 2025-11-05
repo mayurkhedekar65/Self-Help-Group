@@ -34,39 +34,19 @@ const AddProductForm = ({ isOpen, onClose, onSubmit, initialData }) => {
       setImagePreview(URL.createObjectURL(file));
     }
   };
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://127.0.0.1:8000/adminpanel/addproduct/", formData)
+        .then((Response) => alert(Response.data["message"]));
+    } catch (error) {
+      console.error("error in submitting form", error);
+      alert("error in submitting form.please try again !");
+    }
 
-  try {
-    const form = new FormData();
-    form.append("product_name", formData.product_name);
-    form.append("category", formData.category);
-    form.append("price", formData.price);
-    form.append("stock_quantity", formData.stock_quantity);
-    form.append("description", formData.description);
-    if (formData.image) form.append("image", formData.image);
-
-    const token = localStorage.getItem("token"); // or change key if needed
-
-    const response = await axios.post(
-      "http://127.0.0.1:8000/adminpanel/addproduct/",
-      form,
-      {
-        headers: {
-          Authorization: token ? `Token ${token}` : "", // simple auth header
-        },
-      }
-    );
-
-    alert(response.data.message || "Product added successfully!");
     onSubmit(formData);
     onClose();
-  } catch (error) {
-    console.error("Error in submitting form:", error);
-    alert("Error submitting form. Please try again!");
-  }
-};
-
+  };
   return (
     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
@@ -98,7 +78,7 @@ const AddProductForm = ({ isOpen, onClose, onSubmit, initialData }) => {
                 type="text"
                 id="name"
                 name="product_name"
-                value={formData.product_name || ""}
+                value={formData.product_name}
                 onChange={handleChange}
                 placeholder="E.g., Premium Coconut Oil"
                 className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
@@ -118,7 +98,7 @@ const AddProductForm = ({ isOpen, onClose, onSubmit, initialData }) => {
                 type="text"
                 id="category"
                 name="category"
-                value={formData.category || ""}
+                value={formData.category}
                 onChange={handleChange}
                 placeholder="E.g., Food & Beverages"
                 className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
@@ -140,7 +120,7 @@ const AddProductForm = ({ isOpen, onClose, onSubmit, initialData }) => {
                 name="price"
                 min="0"
                 step="0.01"
-                value={formData.price || ""}
+                value={formData.price}
                 onChange={handleChange}
                 placeholder="E.g., 250.00"
                 className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
@@ -162,7 +142,7 @@ const AddProductForm = ({ isOpen, onClose, onSubmit, initialData }) => {
                 name="stock_quantity"
                 min="0"
                 step="1"
-                value={formData.stock_quantity || ""}
+                value={formData.stock_quantity}
                 onChange={handleChange}
                 placeholder="E.g., 50"
                 className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
@@ -182,7 +162,7 @@ const AddProductForm = ({ isOpen, onClose, onSubmit, initialData }) => {
                 id="description"
                 name="description"
                 rows="4"
-                value={formData.description || ""}
+                value={formData.description}
                 onChange={handleChange}
                 placeholder="Details about the product..."
                 className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
