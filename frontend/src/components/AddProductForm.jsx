@@ -34,19 +34,39 @@ const AddProductForm = ({ isOpen, onClose, onSubmit, initialData }) => {
       setImagePreview(URL.createObjectURL(file));
     }
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("http://127.0.0.1:8000/adminpanel/addproduct/", formData)
-        .then((Response) => alert(Response.data["message"]));
-    } catch (error) {
-      console.error("error in submitting form", error);
-      alert("error in submitting form.please try again !");
-    }
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  try {
+    const form = new FormData();
+    form.append("product_name", formData.product_name);
+    form.append("category", formData.category);
+    form.append("price", formData.price);
+    form.append("stock_quantity", formData.stock_quantity);
+    form.append("description", formData.description);
+    if (formData.image) form.append("image", formData.image);
+
+    const token = localStorage.getItem("token"); // or change key if needed
+
+    const response = await axios.post(
+      "http://127.0.0.1:8000/adminpanel/addproduct/",
+      form,
+      {
+        headers: {
+          Authorization: token ? `Token ${token}` : "", // simple auth header
+        },
+      }
+    );
+
+    alert(response.data.message || "Product added successfully!");
     onSubmit(formData);
     onClose();
-  };
+  } catch (error) {
+    console.error("Error in submitting form:", error);
+    alert("Error submitting form. Please try again!");
+  }
+};
+
   return (
     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
