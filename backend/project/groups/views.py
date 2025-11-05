@@ -9,6 +9,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
+from rest_frameowork.parsers import  MultiPartParser, FormParser
 # Create your views here.
 
 
@@ -83,7 +84,7 @@ class AdminPanelView(APIView):
         stock_quantity = request.data.get('stock_quantity')
         description = request.data.get('description')
         category = request.data.get('category')
-        image = request.data.get('image')
+        image = request.FILES.get('image')
         try:
             if serializer.is_valid():
                 Products.objects.create(
